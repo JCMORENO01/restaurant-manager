@@ -16,6 +16,7 @@ public class Restaurant {
         this.reservations = new ArrayList<>();
     }
 
+    // Métodos de reservas (de main)
     public void makeReservation(String customerName, int partySize, String dateTime) {
         if (customerName == null || customerName.trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre del cliente es requerido");
@@ -48,7 +49,7 @@ public class Restaurant {
         return reservations.removeIf(res -> res.startsWith(trimmed));
     }
 
-    // Optional helpers used by other parts of the application/tests
+    // Métodos de menú y pedidos (de ambas ramas)
     public String getName() {
         return name;
     }
@@ -67,9 +68,27 @@ public class Restaurant {
         }
     }
 
+    public void processOrder(String item, double price) {
+        if (price <= 0) {
+            throw new IllegalArgumentException("El precio debe ser positivo");
+        }
+        if (item == null || item.trim().isEmpty()) {
+            throw new IllegalArgumentException("El item no puede estar vacío");
+        }
+        totalRevenue += price;
+    }
+
     public void addRevenue(double amount) {
         if (amount > 0) {
             totalRevenue += amount;
         }
+    }
+
+    public int getOrderCount() {
+        return (int) (totalRevenue / 10);
+    }
+
+    public void resetRevenue() {
+        totalRevenue = 0.0;
     }
 }
