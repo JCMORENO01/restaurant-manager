@@ -34,3 +34,5 @@ public void testGetStatisticsSummary() {
  assertTrue(summary.contains("La Pizzeria"));
  assertTrue(summary.contains("25.50"));
 }
+
+//Pruebas para verificar el valor promedio de ordenes, buen desempeño e informe estadístico
